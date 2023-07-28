@@ -1,5 +1,4 @@
 // Array of special characters to be included in password
-var password = [];
 
 var specialCharacters = [
   "@",
@@ -96,14 +95,6 @@ var userInputLength = 0;
 // Function to prompt user for password options
 function getPasswordOptions() {
   //use confirm function to create prompts with limits/yes/cancel options so that users cannot break code
-
-  var userPrompt = prompt("Please enter a number between 8 and 128");
-  {
-    if (userPrompt < 8 || userPrompt > 128)
-      alert("Number must be between 8 and 128");
-    userPrompt = prompt("Please enter a number between 8 and 128");
-  }
-
   userInputCap = confirm(
     "Do you want to inlcude capital letters in your password?"
   );
@@ -114,35 +105,67 @@ function getPasswordOptions() {
   userInputSplChr = confirm(
     "Do you want to include Special Characters in your pssword?"
   );
+  var userPrompt = prompt("Please enter a number between 8 and 128");
+  {
+    if (userPrompt < 8 || userPrompt > 128)
+      alert("Number must be between 8 and 128");
+
+    // userPrompt = prompt("Please enter a number between 8 and 128");
+  }
   console.log(userPrompt);
   console.log(userInputCap);
   console.log(userInputLow);
   console.log(userInputNum);
   console.log(userInputSplChr);
-
   return;
 }
 
 getPasswordOptions(userInputLength);
 
-//function to validate the user input
-// var x = 0;
-// function validateForm() {
-//   let x = userInputLength;
-//   if (x < 8 || x > 128) {
-//     alert("Number must be between 8 and 128");
-//     return false;
-//   }
-
-//   return;
-// }
-// validateForm(x);
 // Function for getting a random element from an array
-function getRandom(arr) {}
+var passwordCharacters = [];
+var random = 0;
+var password = "";
 
+function getRandom(arr) {
+  if (userInputCap === true) {
+    passwordCharacterss = passwordCharacters.concat(upperCasedCharacters);
+  }
+
+  if (userInputLow === true) {
+    passwordCharacters = passwordCharacters.concat(lowerCasedCharacters);
+  }
+
+  if (userInputNum === true) {
+    passwordCharacters = passwordCharacters.concat(numericCharacters);
+  }
+
+  if (userInputSplChr === true) {
+    passwordCharacters = passwordCharacters.concat(specialCharacters);
+  }
+  for (let i = 0; i < userPrompt.length; i++) {
+    random = Math.floor(Math.random() * passwordCharacters.length);
+  }
+
+  console.log(passwordCharacters[random]);
+  console.log(passwordCharacters);
+  return;
+}
+getRandom(passwordCharacters);
 // Function to generate password with user input
-function generatePassword() {}
 
+// var random = 0;
+// var password = [];
+
+function generatePassword() {
+  // for (let i = 0; i < userPrompt.length; i++) {
+  //   random = Math.floor(Math.random() * userPrompt.length);
+  // }
+  // console.log(passwordCharacters[random]);
+  // return;
+}
+
+getRandom(passwordCharacters[random]);
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
